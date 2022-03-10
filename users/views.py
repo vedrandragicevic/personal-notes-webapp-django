@@ -8,12 +8,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def loginUser(request):
-    page = 'register'
-    
     if request.user.is_authenticated:
-        return redirect('notes')
-
+        return redirect('mynotes')
+    
+    print("Getting login form...")
+    print("Checking if method is POST...")
     if request.method == "POST":
+        print("Method is post")
         username = request.POST['username'].lower()
         password = request.POST['password']
 
@@ -24,18 +25,31 @@ def loginUser(request):
 
         # QUERYING THE DATABASE
         user = authenticate(request, username=username, password=password)
+        print("Authenticating...")
 
         # login FUNCTION CREATES SESSION FOR THE USER
         if user is not None:
             login(request, user)
-            return redirect(request.GET['next'] if 'next' in request.GET else'notes')
+            return render(request, 'notes/notes.html')
+            # return redirect(request.GET['next'] if 'next' in request.GET else 'notes')
         else:
+            print("No you don't exist boy...")
             messages.error(request, "USERNAME OR PASSWORD IS INCORRECT")
+    else:
+        print("Redirecting back to login form...")
+        return render(request, 'users/login_form.html')
 
-    return render(request, 'users/login_register.html')
+
+    # return render(request, 'users/login_form.html')
 
 
 def logoutUser(request):
     logout(request)
     messages.info(request, 'USER WAS LOGGED OUT')
-    return redirect('login')
+    return render(request, 'users/home_page.html')
+
+
+def homePage(request):
+    context = {}
+    print("You are on the home page now...")
+    return render(request, 'users/home_page.html')

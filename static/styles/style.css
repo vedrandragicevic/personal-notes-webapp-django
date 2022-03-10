@@ -8,9 +8,16 @@
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* background: linear-gradient(to right, rgba(126, 64, 246, 1), rgba(80, 139, 252, 1)) */
 
-  /* CUSTOM LINEAR GRADIENT */
+  /* CUSTOM LINEAR GRADIENT 
   background: rgb(131,58,180);
   background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(210,162,162,1) 50%, rgba(252,176,69,1) 100%);
+  */
+  background: #F5F5F5;
+}
+
+/* Navbar & Footer */
+.custom-nf {
+  background: #212121;
 }
 
 .mask-custom {
@@ -38,4 +45,23 @@ min-height: 100%;
 
 .vefixy {
 width: 10px;
+}
+
+/* FORMS */
+.form-link {
+color: #0AC2E5;
+}
+
+a.form-link:hover {
+color: #138FA7;
+}
+
+.name{
+text-align: left;
+  float:left;
+}
+
+.value{
+text-align:left;
+float:left;
 }

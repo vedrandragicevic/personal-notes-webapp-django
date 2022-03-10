@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="row d-flex justify-content-center">
+
+  <div class="col-md-8">
+
+    <div class="card mask-custom">
+      <div class="card-body p-4 text-center rounded">
+
+        <div class="text-center pt-3 pb-2">
+          
+          <i class="fas fa-users fa-4x" style="color: #212121"></i>
+          
+          <h2 class="my-4 display-4">Welcome to Notes Application!</h2>
+        </div>
+      
+        <p>Please <strong>Login</strong> To View Your Notes.</p>
+
+         <a href="{% url 'login' %}"><button type="button" class="btn btn-info btn-lg">LOGIN</button></a> 
+        
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock content %}

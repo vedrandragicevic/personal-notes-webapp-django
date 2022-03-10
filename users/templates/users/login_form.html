@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+  <div class="row d-flex justify-content-center">
+
+      <!-- Div that determines width of the card -->
+      <div class="col-md-6">
+
+        <div class="card mask-custom">
+          <div class="col-md-8 card-body p-4 text-center mx-auto">
+
+            <!-- Card Header -->
+            <div class="text-center pt-3 pb-2">    
+              <i class="fas fa-users fa-4x" style="color: #212121"></i>
+                      <h3>Account Login</h3>
+                      <small class="text-muted">Hello User, Welcome Back!</small>
+            </div>
+            <!-- Card Header -->
+
+          <!-- Login Form -->
+          <form method="post" action="{% url 'login' %}"> 
+            {% csrf_token %}
+
+          <!-- Input Username -->
+          <label class="form-label name pt-2" for="form1Example1">Username</label>
+          <input type="username" id="form1Example1" class="form-control" name="username" placeholder="Enter your username..."/>
+          <!-- Input Password -->
+          <label class="form-label name pt-3" for="form1Example2">Password</label>
+          <input type="password" id="form1Example2" class="form-control" name="password" placeholder="••••••••"/>
+            
+            
+              <!-- 2 column grid layout for inline styling -->
+              <div class="row mb-4 pt-3">
+                <!-- Submit login button -->
+                <div class="col">
+                  <!-- Submit login button -->
+                  <input class="btn btn-info" type="submit" value="LOGIN" /> 
+                </div>
+                
+                <!-- Forgot password link -->
+                <div class="col">
+                  <a href="#" class="form-link">Forgot password?</a>
+                </div>
+                <!-- Forgot password link -->
+              </div>
+              <!-- 2 column grid layout for inline styling -->
+            </form>
+            <!-- Login Form -->
+          
+
+
+          </div>
+        </div>
+
+      </div>
+      <!-- Div that determines width of the card -->
+  </div>
+
+
+
+
+{% endblock content %}

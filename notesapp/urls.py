@@ -25,8 +25,8 @@ from django.contrib.auth import views as auth_views
 # SEPERATE URLS INTO MULTIPLE MODULES BASED ON THE APP
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('notes.urls')),
-    path('users/', include('users.urls'))
+    path('notes/', include('notes.urls')),
+    path('', include('users.urls'))
 ]
 
 
