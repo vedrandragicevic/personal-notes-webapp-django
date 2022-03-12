@@ -12,4 +12,5 @@ def notes(request):
     context = {
         'all_notes': all_notes
     }"""
+    print("Rendering notes template...")
     return render(request, 'notes/notes.html')

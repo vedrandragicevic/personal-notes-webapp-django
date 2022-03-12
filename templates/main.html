@@ -33,13 +33,7 @@
           <div class="container-fluid">
       
             <a class="navbar-brand" href="{% url 'homepage' %}">
-              <img
-                src="{% static 'images/navbar_image.png' %}"
-                class="me-2"
-                height="40"
-                alt="Notes Logo"
-                loading="lazy"
-              />    
+              <i class="fas fa-sticky-note fa-2x" style="color: #FCF8F7"></i>   
             </a>
       
             <!-- Toggle button -->
@@ -96,15 +90,7 @@
                 <div class="container py-5 h-100">
 
 
-                  {% if messages %}
-
-                  {% for message in messages %}
-                    
-                            <p id="vex_alert">{{message}}</p>
-                           
-                  {% endfor %}
                   
-                  {% endif %}
 
             
         {% block content %}

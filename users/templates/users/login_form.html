@@ -12,7 +12,18 @@
           <div class="col-md-8 card-body p-4 text-center mx-auto">
 
             <!-- Card Header -->
-            <div class="text-center pt-3 pb-2">    
+            <div class="text-center pt-3 pb-2">  
+              
+              {% if messages %}
+
+              {% for message in messages %}
+                
+                        <p class="note note-primary">{{message}}</p>
+                       
+              {% endfor %}
+              
+              {% endif %}
+
               <i class="fas fa-users fa-4x" style="color: #212121"></i>
                       <h3>Account Login</h3>
                       <small class="text-muted">Hello User, Welcome Back!</small>

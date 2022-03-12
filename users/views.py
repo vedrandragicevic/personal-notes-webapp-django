@@ -7,6 +7,13 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+
+def homePageRender(request):
+    context = {}
+    return render(request, 'users/home_page.html', context)
+
+
+
 def loginUser(request):
     if request.user.is_authenticated:
         return redirect('mynotes')
@@ -33,8 +40,9 @@ def loginUser(request):
             return render(request, 'notes/notes.html')
             # return redirect(request.GET['next'] if 'next' in request.GET else 'notes')
         else:
-            print("No you don't exist boy...")
+            print("No you don't exist..")
             messages.error(request, "USERNAME OR PASSWORD IS INCORRECT")
+            return redirect('login')
     else:
         print("Redirecting back to login form...")
         return render(request, 'users/login_form.html')
@@ -43,13 +51,10 @@ def loginUser(request):
     # return render(request, 'users/login_form.html')
 
 
+@login_required
 def logoutUser(request):
+    print("Logging user out...")
     logout(request)
     messages.info(request, 'USER WAS LOGGED OUT')
     return render(request, 'users/home_page.html')
 
-
-def homePage(request):
-    context = {}
-    print("You are on the home page now...")
-    return render(request, 'users/home_page.html')
