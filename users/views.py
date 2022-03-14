@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserCreationForm, profileForm
 
 
 # Create your views here.
@@ -58,3 +59,26 @@ def logoutUser(request):
     messages.info(request, 'USER WAS LOGGED OUT')
     return render(request, 'users/home_page.html')
 
+
+def registerUser(request):
+    page = 'register'
+    form = CustomUserCreationForm()
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            # HOLDING THE USER BEFORE PROCESSING IT, FOR MODIFICATION
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+
+            messages.success(request, 'User account was created!')
+
+            login(request, user)
+            return redirect('homepage')
+
+        else:
+            messages.success(request, 'An error has occurred during registration!')
+
+    context = {'page': page, 'form': form}
+    return render(request, 'users/register_form.html', context)

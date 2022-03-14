@@ -15,7 +15,7 @@ class Note(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     completed_flag = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
     
 
 
