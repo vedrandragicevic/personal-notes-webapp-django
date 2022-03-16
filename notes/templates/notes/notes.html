@@ -13,15 +13,15 @@
 
             <div class="text-center pt-3 pb-2">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="Check" width="60">
-              <h2 class="my-4">My Notes List</h2>
+              <h2 class="my-4">My TODO Notes</h2>
             </div>
 
             
             <table class="table mb-0">
               <thead>
                 <tr>
-                  <th scope="col">Timestamp</th>
-                  <th scope="col">Task</th>
+                  <th scope="col">Created At</th>
+                  <th scope="col">Title</th>
                   <th scope="col">Priority</th>
                   <th scope="col">Actions</th>
                 </tr>
@@ -30,38 +30,48 @@
               <tbody>
 
                 {% for note in all_notes %}
-                  <tr class="fw-normal">
+                  {% if note %}
 
-                    <th>     
-                      <span class="ms-2">{{note.created}}</span>
-                    </th>
+                      {% if note.completed_flag == False %}
+                        <tr class="fw-normal">
 
-                    <td class="align-middle">
-                      <span >{{note.note_title}}</span >
-                    </td>
+                          <th>     
+                            <span class="ms-2">{{note.created}}</span>
+                          </th>
 
-                    {% if note.priority_type == 'high' %}
-                    <td class="align-middle">
-                      <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
-                    </td>
+                          <td class="align-middle">
+                            <span >{{note.note_title}}</span >
+                          </td>
 
-                    {% elif note.priority_type == 'medium' %}
-                    <td class="align-middle">
-                      <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
-                    </td>
+                          {% if note.priority_type == 'high' %}
+                          <td class="align-middle">
+                            <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                          </td>
 
-                    {% else %}
-                    <td class="align-middle">
-                      <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
-                    </td>
-                    
-                    {% endif %}
+                          {% elif note.priority_type == 'medium' %}
+                          <td class="align-middle">
+                            <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+                          </td>
 
-                    <td class="align-middle">
-                        <a href="#!" data-mdb-toggle="tooltip" title="Done"><i class="fas fa-check fa-lg text-success me-3"></i></a>
-                      <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
-                    </td>
-                  </tr>
+                          {% else %}
+                          <td class="align-middle">
+                            <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                          </td>
+
+                          {% endif %}
+
+                          <td class="align-middle">
+                              <a href="{% url 'updatenote' note.id %}" data-mdb-toggle="tooltip" title="Done"><i class="fas fa-check fa-lg text-success me-3"></i></a>
+                            <a href="#!" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
+                          </td>
+                        </tr>
+                        {% endif %}
+
+                  {% else %}
+
+                  <p class="h1">No Notes Found.</p>
+
+                  {% endif %}
                 {% endfor %}
 
                 

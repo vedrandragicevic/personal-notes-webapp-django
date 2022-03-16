@@ -38,7 +38,8 @@ def loginUser(request):
         # login FUNCTION CREATES SESSION FOR THE USER
         if user is not None:
             login(request, user)
-            return render(request, 'notes/notes.html')
+            # return render(request, 'notes/notes.html')
+            return redirect('mynotes')
             # return redirect(request.GET['next'] if 'next' in request.GET else 'notes')
         else:
             print("No you don't exist..")
