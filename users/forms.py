@@ -10,16 +10,16 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['first_name', 'email', 'username', 'password1', 'password2']
         labels = {
-            'first_name': 'name'
+            'first_name': 'Name'
         }
 
 
-    """def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
 
         for name, field in self.fields.items():
                 
-            field.widget.attrs.update({'class':'input'})"""
+            field.widget.attrs.update({'class':'form-control'})
 
 
 class profileForm(ModelForm):
@@ -32,4 +32,4 @@ class profileForm(ModelForm):
 
         for name, field in self.fields.items():
                 
-            field.widget.attrs.update({'class':'input'})
+            field.widget.attrs.update({'class':'form-control'})

@@ -18,7 +18,7 @@
 
             {% for message in messages %}
               
-                      <p class="note note-primary">{{message}}</p>
+                      <p id="alert-reg" class="note note-primary">{{message}}</p>
                      
             {% endfor %}
             
@@ -26,10 +26,12 @@
 
             <i class="fas fa-users fa-4x" style="color: #212121"></i>
                     <h3>Register Account</h3>
-                    <small class="text-muted">Welcome New User!</small>
+                    <small class="lead">Welcome New User!</small>
           </div>
           <!-- Card Header -->
 
+        
+          <div class="col-md-12">
         <!-- Login Form -->
         <form method="post" action=""> 
           {% csrf_token %}
@@ -39,17 +41,31 @@
 
           <!-- Input:Text -->         
   
-            <label class="form-label name pt-2" for="form1Example1">{{field.label}}</label>
-            {{field}}
+       
+
+
+            <div class="row">
+              
+              <label class="form-label" for="form12">{{field.label}}</label>
+              
+            </div>
+
+            <div class="row">
+              
+              {{field}}
+              
+            </div>
+            
+
   
             {% for error in field.errors %}
-              <p style="color: red;">{{error}}</p>
+              <p style="color: blue;">{{error}}</p>
             {% endfor %}
           
   
           {% endfor %}
 
-          
+          </div>
             <!-- 2 column grid layout for inline styling -->
             <div class="row mb-4 pt-3">
               <!-- Submit login button -->
@@ -67,6 +83,8 @@
             <!-- 2 column grid layout for inline styling -->
           </form>
           <!-- Login Form -->
+        
+      </div>
         
 
 
