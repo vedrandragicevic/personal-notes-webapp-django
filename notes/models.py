@@ -7,11 +7,12 @@ class Note(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     note_title = models.CharField(max_length=400)
     note_data = models.TextField(null=True, blank=True)
-    priority_type = (
+    priority = (
         ('high', 'High Priority'),
         ('medium', 'Medium Priority'),
         ('low', 'Low Priority')
     )
+    priority_type = models.CharField(max_length=50, choices=priority, default='low')
     created = models.DateTimeField(auto_now_add=True)
     completed_flag = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)

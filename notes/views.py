@@ -8,9 +8,11 @@ from .models import Note
 
 
 def notes(request):
-    """all_notes = Note.object.all()
+    all_notes = Note.objects.all()
+   
     context = {
         'all_notes': all_notes
-    }"""
+    }
+    
     print("Rendering notes template...")
-    return render(request, 'notes/notes.html')
+    return render(request, 'notes/notes.html', context)
