@@ -58,7 +58,7 @@ def logoutUser(request):
     print("Logging user out...")
     logout(request)
     messages.info(request, 'USER WAS LOGGED OUT')
-    return render(request, 'users/home_page.html')
+    return redirect('homepage')
 
 
 def registerUser(request):

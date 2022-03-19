@@ -14,32 +14,31 @@
         <div class="text-center pt-3 pb-2">
 
           {% if messages %}
-
               {% for message in messages %}
-                
-                        <p class="note note-primary">{{message}}</p>
-                       
-              {% endfor %}
-              
-              {% endif %}
+                        <p class="note note-primary">{{message}}</p>                 
+              {% endfor %}   
+          {% endif %}
     
+
           <i class="fas fa-users fa-4x" style="color: #212121"></i>
           
           <h2 class="my-4 display-6">Welcome to Notes Application!</h2>
         </div>
 
+
         {% if not request.user.is_authenticated %} 
       
         <p>Please <strong>Login</strong> To View Your Notes.</p>
-
-         <a href="{% url 'login' %}"><button type="button" class="btn btn-info btn-lg">LOGIN</button></a> 
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-info btn-lg">LOGIN</button></a> 
         
         {% else %}
 
-        <a href="{% url 'mynotes' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">MY NOTES</button></a>
+        <a href="{% url 'completed-notes' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">Completed Notes</button></a>
+        <a href="{% url 'mynotes' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">TODO Notes</button></a>
         <a href="{% url 'logout' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">LOGOUT</button></a>
 
         {% endif %}
+
 
       </div>
     </div>

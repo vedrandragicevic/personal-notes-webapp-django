@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<div class="row d-flex justify-content-center">
+
+    <!-- Div that determines width of the card -->
+    <div class="col-md-6">
+
+      <div class="card mask-custom">
+        <div class="col-md-8 card-body p-4 text-center mx-auto">
+
+          <!-- Card Header -->
+          <div class="text-center pt-3 pb-2">  
+            
+            {% if messages %}
+
+            {% for message in messages %}
+              
+                      <p id="vex-alert" class="note note-primary">{{message}}</p>
+                     
+            {% endfor %}
+            
+            {% endif %}
+
+            <i class="fas fa-users fa-4x" style="color: #212121"></i>
+                    <h3>DELETE NOTE</h3>
+                    
+          </div>
+          <!-- Card Header -->
+
+        <!-- Delete Form -->
+        <form method="POST" action=""> 
+          {% csrf_token %}
+
+     
+          <p>Are you sure you want to delete "{{object}}"?</p>
+        
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4 pt-3">
+                  
+              <div class="col">
+                <!-- GO BACK BUTTON -->
+                <a href="{% url 'mynotes' %}" class="btn btn-info">GO BACK</a>
+              </div>
+
+              <div class="col">
+                <!-- SUBMIT BUTTON -->
+                <input class="btn btn-danger" type="submit" value="CONFIRM" /> 
+              </div>
+
+            
+            </div>
+            <!-- 2 column grid layout for inline styling -->
+          </form>
+          <!-- Delete Form -->
+        
+
+
+        </div>
+      </div>
+
+    </div>
+    <!-- Div that determines width of the card -->
+</div>
+
+
+
+{% endblock %}

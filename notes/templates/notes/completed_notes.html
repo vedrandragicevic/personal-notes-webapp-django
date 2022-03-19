@@ -13,7 +13,7 @@
 
             <div class="text-center pt-3 pb-2">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="Check" width="60">
-              <h2 class="my-4">My TODO Notes</h2>
+              <h2 class="my-4">Completed Notes</h2>
             </div>
 
             
@@ -29,10 +29,10 @@
 
               <tbody>
 
-                {% for note in all_notes %}
+                {% for note in completed_notes %}
                   {% if note %}
 
-                      {% if not note.completed_flag%}
+                      {% if note.completed_flag%}
                         <tr class="fw-normal">
 
                           <th>     
@@ -62,15 +62,17 @@
 
 
                           <td class="align-middle">
-                              <a href="{% url 'updatenote' note.id %}" data-mdb-toggle="tooltip" title="Done"><i class="fas fa-check fa-lg text-success me-3"></i></a>
+                            <a href="{% url 'track-note' note.id %}" data-mdb-toggle="tooltip" title="Revert"><i class="fas fa-bell fa-lg text-success me-3"></i></a> 
                             <a href="{% url 'delete-note' note.id %}" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
                           </td>
                         </tr>
                       {% endif %}
 
+
+
                   {% else %}
 
-                  <p class="h1">No Notes Found.</p>
+
 
                   {% endif %}
                 {% endfor %}
