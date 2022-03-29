@@ -15,10 +15,12 @@ class Note(models.Model):
     priority_type = models.CharField(max_length=50, choices=priority, default='low')
     created = models.DateTimeField(auto_now_add=True)
     completed_flag = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
     
 
-
     def __str__(self):
         return self.note_title
+
+    
+    class Meta:
+        ordering = ['-created']

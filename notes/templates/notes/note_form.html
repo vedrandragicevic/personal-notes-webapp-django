@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% load static %}
+
 {% block content %}
 
 
@@ -18,73 +18,56 @@
 
             {% for message in messages %}
               
-                      <p id="alert-reg" class="note note-primary">{{message}}</p>
+                      <p id="vex-alert" class="note note-primary">{{message}}</p>
                      
             {% endfor %}
             
             {% endif %}
 
-            <i class="fas fa-users fa-4x" style="color: #212121"></i>
-                    <h3>Register Account</h3>
-                    <small class="lead">Welcome New User!</small>
+            <i class="fas fa-sticky-note fa-4x" style="color: #32DFF8"></i>
+                    <h3>Create New Note</h3>
+                    
           </div>
           <!-- Card Header -->
 
-        
-          <div class="col-md-12">
         <!-- Login Form -->
-        <form method="post" action=""> 
+        <form method="POST"> 
           {% csrf_token %}
 
 
-          {% for field in form %}
-
-          <!-- Input:Text -->         
-  
-       
-
+            {% for field in form %}
 
             <div class="row">
-              
-              <label class="form-label" for="form12">{{field.label}}</label>
-              
+                <label class="form-label mt-2" for="form1Example1">{{field.label}}</label>
             </div>
 
             <div class="row">
-              
-              {{field}}
-              
+                {{field}}
             </div>
-            
-            
-  
-            {% for error in field.errors %}
-              <p style="color: blue;">{{error}}</p>
+
             {% endfor %}
-          
-  
-          {% endfor %}
 
-          </div>
+
+          
+
+
             <!-- 2 column grid layout for inline styling -->
             <div class="row mb-4 pt-3">
-              <!-- Submit login button -->
+              
+              <!-- Cancel button -->
               <div class="col">
-                <!-- Submit login button -->
-                <input class="btn btn-info" type="submit" value="REGISTER" /> 
+                <a href="{% url 'mynotes' %}" class="btn btn-info">CANCEL</a>
               </div>
               
-              <!-- Forgot password link -->
               <div class="col">
-                <a href="{% url 'login' %}" class="form-link">Already have an account?</a>
+                <!-- Submit form button -->
+                <input class="btn btn-info" type="submit" value="CREATE" /> 
               </div>
-              <!-- Forgot password link -->
+
             </div>
             <!-- 2 column grid layout for inline styling -->
           </form>
           <!-- Login Form -->
-        
-      </div>
         
 
 
@@ -94,7 +77,6 @@
     </div>
     <!-- Div that determines width of the card -->
 </div>
-
 
 
 

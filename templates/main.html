@@ -32,10 +32,9 @@
           <!-- Container wrapper -->
           <div class="container-fluid">
       
+            <!-- HOME URL -->
             {% if request.user.is_authenticated %}
-            <a class="navbar-brand" href="{% url 'homepage' %}">
-              <i class="fas fa-sticky-note fa-2x" style="color: #FCF8F7"></i>   
-            </a>
+              <a class="btn bg-light px-3" href="{% url 'homepage' %}" role="button"><i class="fas fa-home"></i></a>
             {% endif %}
       
             <!-- Toggle button -->

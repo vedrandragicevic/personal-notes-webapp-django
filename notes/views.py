@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Note
+from .forms import NoteForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 
@@ -58,9 +59,26 @@ def delete_note(request, pk):
     note = profile.note_set.get(id=pk)
     if request.method == 'POST':
         note.delete()
-        messages.success(request, 'Skill was deleted!')
+        # messages.success(request, 'Note was deleted!')
         return redirect('mynotes')
 
     context = {'object': note}
 
     return render(request, 'delete_template.html', context)
+
+
+@login_required(login_url='login')
+def create_note(request):
+    profile = request.user.profile
+    form = NoteForm()
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.owner = profile
+            note.save()
+            # messages.success(request, 'Note was created!')
+            return redirect('mynotes')
+
+    context = {'form': form}
+    return render(request, 'notes/note_form.html', context)
