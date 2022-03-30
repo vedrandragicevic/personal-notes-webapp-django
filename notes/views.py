@@ -55,8 +55,34 @@ def completed_notes(request):
     all_notes = profile.note_set.all()
     completed_notes = all_notes.filter(completed_flag=True)
 
+    # PAGINATION IMPLEMENTATION
+    note_paginator = Paginator(completed_notes, 10)
+    page = request.GET.get('page')
+
+    try:
+        completed_notes_paginated = note_paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        completed_notes_paginated = note_paginator.page(page)
+    except EmptyPage:
+        page = note_paginator.num_pages
+        completed_notes_paginated = note_paginator.page(page)
+
+    left_index = int(page) - 4
+    if left_index < 1:
+        left_index = 1
+
+    right_index = int(page) + 5
+    if right_index > note_paginator.num_pages:
+        right_index = note_paginator.num_pages + 1
+
+    custom_range = range(left_index, right_index)
+
+
     context = {
-        'completed_notes': completed_notes
+        'completed_notes': completed_notes,
+        'notes_paginated': completed_notes_paginated,
+        'custom_range': custom_range
     }
 
     return render(request, 'notes/completed_notes.html', context)
@@ -109,3 +135,13 @@ def create_note(request):
 
     context = {'form': form}
     return render(request, 'notes/note_form.html', context)
+
+
+def single_note(request, pk):
+    profile = request.user.profile
+    note = profile.note_set.get(id=pk)
+
+    context = {
+        'note': note
+    }
+    return render(request, 'notes/single_note.html', context)

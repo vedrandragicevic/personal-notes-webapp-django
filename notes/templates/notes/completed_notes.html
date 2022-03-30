@@ -29,7 +29,7 @@
 
               <tbody>
 
-                {% for note in completed_notes %}
+                {% for note in notes_paginated %}
                   {% if note %}
 
                       {% if note.completed_flag%}
@@ -118,6 +118,47 @@
                 
               </tbody>
             </table>
+
+
+
+            {% if notes_paginated.has_other_pages %}
+            <!-- PAGINATION DIV -->
+            <div class="row mb-4 pt-3">
+              <div class="col text-center">          
+              <nav aria-label="...">
+                <ul class="pagination pagination-sm justify-content-center">
+                  
+                  {% if notes_paginated.has_previous %}
+                    <li class="page-item p-1"><a class="page-link" href="?page={{notes_paginated.previous_page_number}}" data-page="{{notes_paginated.previous_page_number}}">&#10094; Prev</a></li>
+                  {% endif %}
+
+                    {% for page in custom_range %}
+
+                      {% if page == notes_paginated.number %}
+                      <li class="page-item p-1"><a href="?page={{page}}" class="page-link btn btn-lg btn-info" style="background-color:#32DFF8;" data-page="{{page}}">{{page}}</a></li>
+                      
+                      {% else %}
+                        <li class="page-item p-1"><a class="page-link" href="?page={{page}}" data-page="{{page}}">{{page}}</a></li>
+
+                      {% endif %}
+                      
+                                        
+                    {% endfor %}
+
+
+
+                  {% if notes_paginated.has_next %}
+                    <li class="page-item p-1"><a class="page-link" href="?page={{notes_paginated.next_page_number}}" data-page="{{notes_paginated.next_page_number}}">Next &#10095;</a></li>
+                  {% endif %}
+
+                </ul>
+              </nav>      
+            </div>
+          </div>
+          <!-- END OF PAGINATION DIV -->
+        {% endif %}
+
+
 
 
           </div>
