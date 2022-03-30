@@ -29,7 +29,7 @@
             </div>
 
             
-            <table class="table mb-0">
+            <table class="table mb-0 table-hover">
               <thead>
                 <tr>
                   <th scope="col">Created At</th>
@@ -47,35 +47,48 @@
                       {% if not note.completed_flag%}
                         <tr class="fw-normal">
 
-                          <th>     
-                            <span class="ms-2">{{note.created}}</span>
-                          </th>
+                         
 
                           <td class="align-middle">
-                            <span >{{note.note_title|slice:"50"}}</span >
+                            <a href="{% url 'single-note' note.id %}" class="link-dark">
+                              <span class="ms-2">{{note.created}}</span>
+                             </a> 
                           </td>
 
+                           
+                          <td class="align-middle">
+                            <a href="{% url 'single-note' note.id %}" class="link-dark">
+                            <span >{{note.note_title|slice:"50"}}</span >
+                             </a> 
+                          </td>
+                          
 
                           {% if note.priority_type == 'high' %}
-                          <td class="align-middle">
-                            <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
-                          </td>
+                            <td class="align-middle">
+                              <a href="{% url 'single-note' note.id %}">
+                                <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
+                              </a>
+                            </td>
 
                           {% elif note.priority_type == 'medium' %}
-                          <td class="align-middle">
-                            <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
-                          </td>
+                            <td class="align-middle">
+                              <a href="{% url 'single-note' note.id %}">
+                                <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
+                              </a>
+                            </td>
 
                           {% else %}
-                          <td class="align-middle">
-                            <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
-                          </td>
+                            <td class="align-middle">
+                              <a href="{% url 'single-note' note.id %}">
+                                <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
+                              </a>  
+                            </td>
                           {% endif %}
 
 
                           <td class="align-middle">
                               <a href="{% url 'updatenote' note.id %}" data-mdb-toggle="tooltip" title="Done"><i class="fas fa-check fa-lg text-success me-3"></i></a>
-                            <a href="{% url 'delete-note' note.id %}" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
+                              <a href="{% url 'delete-note' note.id %}" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
                           </td>
                         </tr>
                       {% endif %}
@@ -118,10 +131,8 @@
                         <li class="page-item p-1"><a class="page-link" href="?page={{page}}" data-page="{{page}}">{{page}}</a></li>
 
                       {% endif %}
-                      
-                                        
+                                                            
                     {% endfor %}
-
 
 
                   {% if notes_paginated.has_next %}

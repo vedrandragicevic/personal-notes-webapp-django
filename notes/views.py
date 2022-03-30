@@ -145,3 +145,23 @@ def single_note(request, pk):
         'note': note
     }
     return render(request, 'notes/single_note.html', context)
+
+
+@login_required(login_url='login')
+def edit_single_note(request, pk):
+    profile = request.user.profile
+    note = profile.note_set.get(id=pk)
+    form = NoteForm(instance=note)
+
+    if request.method == 'POST':
+        form = NoteForm(request.POST, instance=note)
+        if form.is_valid():
+            form.save()
+
+        return redirect('mynotes')
+    
+    context = {
+        'form': form,
+        'note': note
+    }
+    return render(request, 'notes/note_form.html', context)

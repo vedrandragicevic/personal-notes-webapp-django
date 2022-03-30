@@ -7,12 +7,14 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, profileForm
 
 
-# Create your views here.
-
 def homePageRender(request):
-    context = {}
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        profile = ''
+    
+    context = {'profile': profile}
     return render(request, 'users/home_page.html', context)
-
 
 
 def loginUser(request):
@@ -48,7 +50,6 @@ def loginUser(request):
     else:
         print("Redirecting back to login form...")
         return render(request, 'users/login_form.html')
-
 
     # return render(request, 'users/login_form.html')
 
