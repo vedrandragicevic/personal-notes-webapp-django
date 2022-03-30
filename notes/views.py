@@ -6,16 +6,43 @@ from .models import Note
 from .forms import NoteForm
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 @login_required(login_url='login')
 def notes(request):
     # all_notes = Note.objects.all()
     profile = request.user.profile
-    all_notes = profile.note_set.all()
+    notes = profile.note_set.all()
+    all_notes = notes.filter(completed_flag=False)
+
+    # PAGINATION IMPLEMENTATION
+    note_paginator = Paginator(all_notes, 10)
+    page = request.GET.get('page')
+
+    try:
+        notes_paginated = note_paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        notes_paginated = note_paginator.page(page)
+    except EmptyPage:
+        page = note_paginator.num_pages
+        notes_paginated = note_paginator.page(page)
+
+    left_index = int(page) - 4
+    if left_index < 1:
+        left_index = 1
+
+    right_index = int(page) + 5
+    if right_index > note_paginator.num_pages:
+        right_index = note_paginator.num_pages + 1
+
+    custom_range = range(left_index, right_index)
 
     context = {
-        'all_notes': all_notes
+        'all_notes': all_notes,
+        'notes_paginated': notes_paginated,
+        'custom_range': custom_range
     }
 
     return render(request, 'notes/notes.html', context)
