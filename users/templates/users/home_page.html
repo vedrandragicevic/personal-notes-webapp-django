@@ -28,18 +28,27 @@
         {% if not request.user.is_authenticated %} 
       
         <p>Please <strong>Login</strong> To View Your Notes.</p>
-        <a href="{% url 'login' %}"><button type="button" class="btn btn-info btn-lg">LOGIN</button></a> 
+        <a href="{% url 'login' %}" class="pe-3"><button type="button" class="btn btn-info btn-lg">LOGIN</button></a>
+        <a href="{% url 'register' %}" class="ps-3"><button type="button" class="btn btn-info btn-lg">Sign Up</button></a> 
         
         {% else %}
 
 
         <div class="col pt-1">
          
+
           <div class="row pb-3"> 
-            <div class="col">
-              <p>Account Info</p>
+            <div class="row"> 
+              <div class="col">
+                <p>Account Info</p>
+              </div class="col">
+              <div>
+                <a href="{% url 'edit-account' %}" class="link-dark"><i class="fas fa-edit"></i></a>
+              </div>          
+              </div>
             </div>
-          </div>
+
+
 
           <div class="row">
             <div class="col-sm-3">
@@ -89,9 +98,13 @@
         <div class="row mb-4 pt-3"> 
         <div class="col pt-2"> 
         <a href="{% url 'mynotes' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">TODO Notes</button></a>
-        <a href="{% url 'completed-notes' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">Completed Notes</button></a>    
-        <a href="{% url 'logout' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">LOGOUT</button></a>
         </div>
+        <div class="col pt-2">
+        <a href="{% url 'completed-notes' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">Completed Notes</button></a>
+        </div> 
+        <div class="col pt-2">   
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-info btn-lg px-3 me-3">LOGOUT</button></a>
+        </div> 
         </div>
         {% endif %}
 

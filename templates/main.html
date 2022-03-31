@@ -34,10 +34,12 @@
       
             <!-- HOME URL -->
             {% if request.user.is_authenticated %}
-              <a class="btn bg-light px-3" href="{% url 'homepage' %}" role="button"><i class="fas fa-home"></i></a>
+            <div class="d-flex align-items-center">
+              <a class="btn bg-light px-3" href="{% url 'homepage' %}" role="button"><i class="fas fa-home"></i>  Home</a>
+            </div>
             {% endif %}
       
-            <!-- Toggle button -->
+            <!-- Toggle button 
             <button
               class="navbar-toggler"
               type="button"
@@ -49,9 +51,9 @@
             >
               <i class="fas fa-bars"></i>
             </button>
-        
-            <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            -->
+            <!-- Collapsible wrapper 
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">-->
       
       
           
@@ -59,27 +61,32 @@
               <!-- Buttons div -->
               <div class="d-flex align-items-center">
 
+                <!--  
                 <ul class="navbar-nav me-2 mb-2 mb-lg-0">            
                   <li class="nav-item"><a class="nav-link text-white" href="{% url 'mynotes' %}">TODO Notes</a></li>
                   <li class="nav-item"><a class="nav-link text-white" href="{% url 'completed-notes' %}">Completed Notes</a></li> 
                 </ul>
-              
+                -->
+                <a href="{% url 'mynotes' %}" ><button type="button" class="btn btn-light me-3">TODO</button></a>
+                <a href="{% url 'completed-notes' %}" ><button type="button" class="btn btn-light me-3">Completed</button></a>
                 <a href="{% url 'logout' %}" ><button type="button" class="btn btn-light me-3">Logout</button></a>  
 
 
               {% else %}
 
-                <a href="{% url 'login' %}"><button type="button" class="btn px-3 me-3 btn-light">Login</button></a>
-                <a href="{% url 'register' %}"><button type="button" class="btn btn-light me-3">Sign up for free</button></a>
+                <div class="col justify-content-end"></div>
 
+                <a href="{% url 'login' %}"><button type="button" class="btn px-3 me-3 btn-light">Login</button></a>              
+                <a href="{% url 'register' %}" ><button type="button" class="btn btn-light me-3">Sign Up</button></a>
+                
               {% endif %}
         
               <a class="btn bg-light px-3" href="https://github.com/vedrandragicevic/personal-notes-webapp-django" role="button"><i class="fab fa-github"></i></a>
             </div>
             <!-- Buttons div -->
           
-          </div>
-          <!-- Collapsible wrapper -->
+         <!-- </div>
+           Collapsible wrapper -->
           </div>
           <!-- Container wrapper -->
         </nav>

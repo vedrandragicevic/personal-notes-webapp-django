@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, profileForm
 
 
-def homePageRender(request):
+def home_page_render(request):
     try:
         profile = request.user.profile
     except AttributeError:
@@ -17,7 +17,7 @@ def homePageRender(request):
     return render(request, 'users/home_page.html', context)
 
 
-def loginUser(request):
+def login_user(request):
     if request.user.is_authenticated:
         return redirect('mynotes')
     
@@ -55,14 +55,14 @@ def loginUser(request):
 
 
 @login_required
-def logoutUser(request):
+def logout_user(request):
     print("Logging user out...")
     logout(request)
     messages.info(request, 'USER WAS LOGGED OUT')
     return redirect('homepage')
 
 
-def registerUser(request):
+def register_user(request):
     page = 'register'
     form = CustomUserCreationForm()
 
@@ -84,3 +84,18 @@ def registerUser(request):
 
     context = {'page': page, 'form': form}
     return render(request, 'users/register_form.html', context)
+
+
+def edit_account(request):
+    profile = request.user.profile
+    form = profileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = profileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('homepage')
+    
+    context = {'form': form}
+    return render(request, 'users/edit_account_form.html', context)
+
