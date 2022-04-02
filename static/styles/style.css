@@ -66,7 +66,9 @@ text-align:left;
 float:left;
 }
 
-/* TABLE NOTES URLS */
-a:link {
-  color:red !important;
+.social a,
+.social a:hover,
+.social a:link,
+.social a:focus {
+    color: #fefefe !important;
 }
