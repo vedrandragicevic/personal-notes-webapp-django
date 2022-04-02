@@ -9,14 +9,43 @@ from django.conf import settings
 def createProfile(sender, instance, created, **kwargs):
     if created:
         user = instance
-        Profile.objects.create(
+        profile = Profile.objects.create(
             user=user,
             username=user.username,
             email=user.email,
             name=user.first_name
         )
-       
+
+        send_mail(
+            'Welcome to Notes Application!',
+            'We"re glad to have you here!',
+            settings.EMAIL_HOST_USER,
+            [profile.email],
+            fail_silently=False,
+        )
+
+
+
+def updateUser(sender, instance, created, **kwargs):
+    # ONE TO ONE RELATIONSHIP
+    profile = instance
+    user = profile.user
+    if created == False:
+        user.first_name = profile.name
+        user.username = profile.username
+        user.email = profile.email
+        user.save()
+
+
+def deleteUser(sender, instance, **kwargs):
+    try:
+        user = instance.user
+        user.delete()
+    except:
+        pass
 
 
 # Register signals
 post_save.connect(createProfile, sender=User)
+post_save.connect(updateUser, sender=Profile)
+post_delete.connect(deleteUser, sender=Profile)

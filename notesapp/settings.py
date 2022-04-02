@@ -132,6 +132,16 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+
+# EMAIL configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.getenv('FROM_EMAIL')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
 # Tell Django where to upload static files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # Defines where static files in production are gonna be stashed
