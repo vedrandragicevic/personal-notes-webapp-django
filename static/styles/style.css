@@ -1,17 +1,4 @@
 .gradient-custom-2 {
-  /* fallback for old browsers */
-  /* background: #7e40f6; */
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  /* background: -webkit-linear-gradient(to right, rgba(126, 64, 246, 1), rgba(80, 139, 252, 1)); */
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  /* background: linear-gradient(to right, rgba(126, 64, 246, 1), rgba(80, 139, 252, 1)) */
-
-  /* CUSTOM LINEAR GRADIENT 
-  background: rgb(131,58,180);
-  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(210,162,162,1) 50%, rgba(252,176,69,1) 100%);
-  */
   background: #F5F5F5;
 }
 
@@ -64,11 +51,4 @@ text-align: left;
 .value{
 text-align:left;
 float:left;
-}
-
-.social a,
-.social a:hover,
-.social a:link,
-.social a:focus {
-    color: #fefefe !important;
 }

@@ -3,11 +3,10 @@
 
 <!-- Main Container Div -->
 
-
    <div class="row d-flex justify-content-center">
       <div class="col-md-12">
         
-
+        <!-- Card DIV -->
         <div class="card mask-custom">
           <div class="card-body p-4">
 
@@ -29,10 +28,9 @@
 
               <tbody>
 
-                {% for note in notes_paginated %}
-                  {% if note %}
-
-                      {% if note.completed_flag%}
+                {% if notes_paginated %}
+                  {% for note in notes_paginated %}
+                                
                         <tr class="fw-normal">
 
                           <td class="align-middle">
@@ -76,55 +74,31 @@
                             <a href="{% url 'delete-note' note.id %}" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
                           </td>
                         </tr>
-                      {% endif %}
+                         
+                  {% endfor %}
 
 
+                {% else %}
 
-                  {% else %}
+                <tr class="fw-normal">
 
+                  <td class="align-middle">                   
+                      <span class="ms-2">None</span>                     
+                  </td> 
 
+                  <td class="align-middle">                    
+                    <span class="ms-2">None</span>                    
+                  </td> 
 
-                        <tr class="fw-normal">
+                  <td class="align-middle">
+                      <span class="ms-2">None</span>              
+                  </td> 
 
-                          <th>     
-                            <span class="ms-2">{{note.created}}</span>
-                          </th>
+                  <td class="align-middle">                    
+                      <span class="ms-2">None</span>                     
+                  </td> 
 
-                          <td class="align-middle">
-                            <span >{{note.note_title}}</span >
-                          </td>
-
-
-                          {% if note.priority_type == 'high' %}
-                          <td class="align-middle">
-                            <h6 class="mb-0"><span class="badge bg-danger">High priority</span></h6>
-                          </td>
-
-                          {% elif note.priority_type == 'medium' %}
-                          <td class="align-middle">
-                            <h6 class="mb-0"><span class="badge bg-warning">Middle priority</span></h6>
-                          </td>
-
-                          {% else %}
-                          <td class="align-middle">
-                            <h6 class="mb-0"><span class="badge bg-success">Low priority</span></h6>
-                          </td>
-                          {% endif %}
-
-
-                          <td class="align-middle">
-                            <a href="{% url 'track-note' note.id %}" data-mdb-toggle="tooltip" title="Revert"><i class="fas fa-bell fa-lg text-success me-3"></i></a> 
-                            <a href="{% url 'delete-note' note.id %}" data-mdb-toggle="tooltip" title="Remove"><i class="fas fa-trash-alt fa-lg text-warning"></i></a>       
-                          </td>
-                        </tr>
-
-
-
-
-
-                  {% endif %}
-                {% endfor %}
-
+                {% endif %}
                 
               </tbody>
             </table>
@@ -132,55 +106,49 @@
 
 
             {% if notes_paginated.has_other_pages %}
-            <!-- PAGINATION DIV -->
-            <div class="row mb-4 pt-3">
-              <div class="col text-center">          
-              <nav aria-label="...">
-                <ul class="pagination pagination-sm justify-content-center">
-                  
-                  {% if notes_paginated.has_previous %}
-                    <li class="page-item p-1"><a class="page-link" href="?page={{notes_paginated.previous_page_number}}" data-page="{{notes_paginated.previous_page_number}}">&#10094; Prev</a></li>
-                  {% endif %}
+              <!-- Pagination DIV -->
+              <div class="row mb-4 pt-3">
+                <div class="col text-center"> 
 
-                    {% for page in custom_range %}
-
-                      {% if page == notes_paginated.number %}
-                      <li class="page-item p-1"><a href="?page={{page}}" class="page-link btn btn-lg btn-info" style="background-color:#32DFF8;" data-page="{{page}}">{{page}}</a></li>
+                  <nav aria-label="...">
+                    <ul class="pagination pagination-sm justify-content-center">
                       
-                      {% else %}
-                        <li class="page-item p-1"><a class="page-link" href="?page={{page}}" data-page="{{page}}">{{page}}</a></li>
-
+                      {% if notes_paginated.has_previous %}
+                        <li class="page-item p-1"><a class="page-link" href="?page={{notes_paginated.previous_page_number}}" data-page="{{notes_paginated.previous_page_number}}">&#10094; Prev</a></li>
                       {% endif %}
-                      
-                                        
-                    {% endfor %}
 
+                      {% for page in custom_range %}
 
+                        {% if page == notes_paginated.number %}
+                          <li class="page-item p-1"><a href="?page={{page}}" class="page-link btn btn-lg btn-info" style="background-color:#32DFF8;" data-page="{{page}}">{{page}}</a></li>
+                        
+                        {% else %}
+                          <li class="page-item p-1"><a class="page-link" href="?page={{page}}" data-page="{{page}}">{{page}}</a></li>
 
-                  {% if notes_paginated.has_next %}
-                    <li class="page-item p-1"><a class="page-link" href="?page={{notes_paginated.next_page_number}}" data-page="{{notes_paginated.next_page_number}}">Next &#10095;</a></li>
-                  {% endif %}
+                        {% endif %}
+                                                      
+                      {% endfor %}
 
-                </ul>
-              </nav>      
-            </div>
-          </div>
-          <!-- END OF PAGINATION DIV -->
-        {% endif %}
+                      {% if notes_paginated.has_next %}
+                        <li class="page-item p-1"><a class="page-link" href="?page={{notes_paginated.next_page_number}}" data-page="{{notes_paginated.next_page_number}}">Next &#10095;</a></li>
+                      {% endif %}
 
+                    </ul>
+                  </nav>
 
+                </div>
+              </div>
+              <!-- Pagination DIV -->
+            {% endif %}
 
 
           </div>
         </div>
+        <!-- Card DIV -->
 
       </div>
     </div>
-   
+    <!-- Main Container DIV -->
  
-
-
-<!-- End Main Container Div -->
-
 
 {% endblock content %}
