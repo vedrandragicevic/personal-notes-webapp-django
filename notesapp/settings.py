@@ -43,10 +43,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'rest_framework',
+    'rest_framework_simplejwt',
     'django.contrib.staticfiles',
     'notes.apps.NotesConfig',
     'users.apps.UsersConfig'
 ]
+
+
+# Added JSON web tokens for authentication
+REST_FRAMEWORK = {'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +67,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'notesapp.urls'
+
 
 TEMPLATES = [
     {
@@ -77,6 +88,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'notesapp.wsgi.application'
 
