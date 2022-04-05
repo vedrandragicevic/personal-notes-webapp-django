@@ -17,7 +17,7 @@ def notes(request):
     all_notes = notes.filter(completed_flag=False)
 
     # PAGINATION IMPLEMENTATION
-    note_paginator = Paginator(all_notes, 10)
+    note_paginator = Paginator(all_notes, 8)
     page = request.GET.get('page')
 
     try:
@@ -137,6 +137,7 @@ def create_note(request):
     return render(request, 'notes/note_form.html', context)
 
 
+@login_required(login_url='login')
 def single_note(request, pk):
     profile = request.user.profile
     note = profile.note_set.get(id=pk)
