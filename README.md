@@ -19,7 +19,7 @@ Steps on how to use this project:
     Enjoy
     </li>
 </ol>
-<br>This project uses sqlite DB included in the repo. API was build using django rest framework and it uses json web tokens for authentication.<br>
+<br>This project uses sqlite DB included in the repo. API was build using django rest framework and it uses json web tokens for authentication. UI was build from scratch using Bootstrap.<br>
 <hr>
 <h3>Home Page</hr>
 <br><br>
@@ -44,4 +44,22 @@ Steps on how to use this project:
 <h3>Login Page</hr>
 <br><br>
 <p><img src="static/images/loginpage.png" style="max-width: 100%;"> </p>
-
+<hr>
+<h3>API Endpoints</h3>
+<p>
+        {
+            'GET': '/api/notes/'
+            },<br>
+        {
+            'GET': '/api/notes/id'
+            },<br>
+        {
+            'GET': '/api/profiles/'
+            },<br>
+        {
+            'POST': '/api/token/'
+            },<br>
+        {
+            'POST': '/api/token/refresh/'
+            }
+    </p>
