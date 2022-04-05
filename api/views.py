@@ -23,10 +23,10 @@ def getRoutes(request):
             'GET': '/api/profiles/'
             },
         {
-            'POST': '/api/token'
+            'POST': '/api/token/'
             },
         {
-            'POST': '/api/token/refresh'
+            'POST': '/api/token/refresh/'
             }
     ]
 
